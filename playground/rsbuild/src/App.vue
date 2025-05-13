@@ -1,10 +1,11 @@
-body {
-  margin: 0;
-  color: #fff;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(to bottom, #020917, #101725);
-}
+<template>
+  <div class="content">
+    <h1>Rsbuild with Vue</h1>
+    <p>Start building amazing things with Rsbuild.</p>
+  </div>
+</template>
 
+<style scoped>
 .content {
   display: flex;
   min-height: 100vh;
@@ -24,3 +25,4 @@ body {
   font-weight: 400;
   opacity: 0.5;
 }
+</style>
