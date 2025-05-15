@@ -1,6 +1,6 @@
 {
   "name": "rsbuild-plugin-unplugin-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/rspack-contrib/rsbuild-plugin-template",
   "license": "MIT",
   "type": "module",
@@ -14,9 +14,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",

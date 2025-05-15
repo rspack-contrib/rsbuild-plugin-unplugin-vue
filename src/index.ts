@@ -13,6 +13,23 @@ const isVirtualModule = (request?: string) => {
   return request.includes('/node_modules/.virtual');
 };
 
+// Preprocessor defined rule in `lib` field will be suffixed with self-increasing serial number.
+// e.g. less, less-1, sass-2.
+const isPreprocessorRule = (
+  preprocessRuleId: string,
+  toMatchRuleId: string,
+) => {
+  if (preprocessRuleId === toMatchRuleId) {
+    return true;
+  }
+
+  if (new RegExp(`${preprocessRuleId}-\\d`).test(toMatchRuleId)) {
+    return true;
+  }
+
+  return false;
+};
+
 const isScopedStyle = (request?: string) => {
   if (!request) return false;
 
@@ -28,16 +45,38 @@ export const pluginUnpluginVue = ({
     const callerName = api.context.callerName;
     const isRslib = callerName === 'rslib';
 
+    api.modifyEnvironmentConfig({
+      handler: (config) => {
+        config.output.target = 'web';
+      },
+      order: 'default',
+    });
+
     api.modifyRspackConfig((config) => {
       // Not using webpack-chain here.
       // https://github.com/neutrinojs/webpack-chain/issues/352
       config.plugins?.push(RspackPluginVue(unpluginVueOptions));
     });
 
-    api.modifyBundlerChain((config, { CHAIN_ID }) => {
-      const baseRule = config.module.rules.get(CHAIN_ID.RULE.CSS);
-      baseRule.enforce('post');
-      config.resolve.extensions.add('.vue');
+    api.modifyBundlerChain({
+      handler: (config, { CHAIN_ID }) => {
+        for (const ruleId in config.module.rules.entries()) {
+          if (
+            CHAIN_ID.RULE.CSS === ruleId ||
+            isPreprocessorRule(CHAIN_ID.RULE.LESS, ruleId) ||
+            isPreprocessorRule(CHAIN_ID.RULE.SASS, ruleId) ||
+            isPreprocessorRule(CHAIN_ID.RULE.STYLUS, ruleId)
+          ) {
+            const baseRule = config.module.rules.get(ruleId);
+            if (baseRule) {
+              baseRule.enforce('post');
+            }
+          }
+        }
+
+        config.resolve.extensions.add('.vue');
+      },
+      order: 'post',
     });
 
     // Rslib bundleless specific config, will only be used in bundleless mode
@@ -68,34 +107,6 @@ export const pluginUnpluginVue = ({
           }
         }
       });
-
-      //   api.modifyBundlerChain((config, { CHAIN_ID }) => {
-      //     const cssRule = config.module.rules.get(CHAIN_ID.RULE.CSS);
-      //     const vueCssRule = config.module
-      //       .rule('vue-scoped-css')
-      //       .test((value) => {
-      //         const matched = /lang\.css$/.test(value);
-      //         if (matched) {
-      //         }
-      //         return isStyle(value);
-      //       })
-      //       .before(CHAIN_ID.RULE.CSS)
-      //       .merge(cssRule.entries());
-      //     const ruleId = CHAIN_ID.RULE.CSS;
-      //     const rule = config.module.rule(ruleId);
-      //     const rspackPath = require.resolve('@rspack/core');
-      //     // TODO: hard coded loader path
-      //     const loaderPath = path.resolve(rspackPath, '../cssExtractLoader.js');
-      //     if (rule.uses.has(CHAIN_ID.USE.MINI_CSS_EXTRACT)) {
-      //       rule
-      //         .use(CHAIN_ID.USE.MINI_CSS_EXTRACT)
-      //         .loader(loaderPath)
-      //         .options({});
-      //     }
-      //     for (const use of cssRule.uses.values()) {
-      //       vueCssRule.use(use.name).merge(use.entries());
-      //     }
-      //   });
     }
   },
 });
