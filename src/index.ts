@@ -3,8 +3,6 @@ import type { Options } from 'unplugin-vue/api';
 import { parseVueRequest } from 'unplugin-vue/api';
 import RspackPluginVue from 'unplugin-vue/rspack';
 
-// const require = createRequire(import.meta.url);
-
 export type PluginUnpluginVueOptions = {
   unpluginVueOptions?: Options;
 };
