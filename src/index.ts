@@ -10,7 +10,10 @@ export type PluginUnpluginVueOptions = {
 const isVirtualModule = (request?: string) => {
   if (!request) return false;
 
-  return request.includes('/node_modules/.virtual') || request.includes('\0');
+  console.log('request', request);
+  return (
+    /[\\/]node_modules[\\/].virtual/.test(request) || request.startsWith('\0')
+  );
 };
 
 // Preprocessor defined rule in `lib` field will be suffixed with self-increasing serial number.
