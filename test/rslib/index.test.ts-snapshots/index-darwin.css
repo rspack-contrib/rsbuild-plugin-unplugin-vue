@@ -1,0 +1,27 @@
+.content {
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  line-height: 1.1;
+  display: flex;
+}
+
+.content h1 {
+  font-size: 3.6rem;
+  font-weight: 700;
+}
+
+.content p {
+  opacity: .5;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+body {
+  color: #fff;
+  background-image: linear-gradient(#020917, #101725);
+  margin: 0;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+

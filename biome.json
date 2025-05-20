@@ -9,6 +9,9 @@
     "clientKind": "git",
     "useIgnoreFile": true
   },
+  "files": {
+    "ignore": ["./test/rslib/index.test.ts-snapshots/**"]
+  },
   "formatter": {
     "indentStyle": "space"
   },

@@ -1,13 +1,11 @@
 # rsbuild-plugin-unplugin-vue
 
-Rsbuild and Rslib plugin for [unplugin-vue](https://github.com/unplugin/unplugin-vue).
-
-This plugin could be used with Rsbuild project as an alternative to [@rsbuild/plugin-vue](https://rsbuild.dev/guide/framework/vue).
-
-This plugin is recommended for projects using Rslib to build Vue components.
+Rsbuild plugin that integrates [unplugin-vue](https://github.com/unplugin/unplugin-vue) for Vue SFC compilation. Works seamlessly with both [Rsbuild](https://rsbuild.dev) and [Rslib](https://lib.rslib.dev). This plugin could be used with Rsbuild project as an alternative to [@rsbuild/plugin-vue](https://rsbuild.dev/guide/framework/vue).
 
 > [!CAUTION]
 > HMR is not supported with Rsbuild yet. Track the issue [here](https://github.com/unplugin/unplugin-vue/issues/162). This plugin is mainly used for building Vue components with Rslib as of now.
+
+This plugin is recommended for projects using Rslib to build Vue components for the time being.
 
 <p>
   <a href="https://npmjs.com/package/rsbuild-plugin-unplugin-vue">

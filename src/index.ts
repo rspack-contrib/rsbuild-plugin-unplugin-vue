@@ -10,7 +10,6 @@ export type PluginUnpluginVueOptions = {
 const isVirtualModule = (request?: string) => {
   if (!request) return false;
 
-  console.log('request', request);
   return (
     /[\\/]node_modules[\\/].virtual/.test(request) || request.startsWith('\0')
   );
