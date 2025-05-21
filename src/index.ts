@@ -47,16 +47,7 @@ export const pluginUnpluginVue = ({
     const callerName = api.context.callerName;
     const isRslib = callerName === 'rslib';
 
-    api.modifyEnvironmentConfig({
-      handler: (config) => {
-        config.output.target = 'web';
-      },
-      order: 'default',
-    });
-
-    api.modifyRspackConfig((config) => {
-      // Not using webpack-chain here.
-      // https://github.com/neutrinojs/webpack-chain/issues/352
+    api.modifyRspackConfig((config, utils) => {
       config.plugins?.push(RspackPluginVue(unpluginVueOptions));
     });
 

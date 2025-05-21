@@ -15,6 +15,7 @@ test('ESM should build succeed', async ({ page }) => {
         format: 'esm',
         plugins: [pluginUnpluginVue()],
         output: {
+          target: 'web',
           externals: ['vue'],
         },
       },
