@@ -1,5 +1,0 @@
-# Ignore artifacts:
-dist
-dist-*
-test/rslib/index.test.ts-snapshots
-pnpm-lock.yaml
