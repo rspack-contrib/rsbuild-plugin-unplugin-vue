@@ -1,8 +1,8 @@
-import { test } from '@playwright/test';
+import { test } from '@rstest/playwright';
 import {
   runRsbuildBuildTest,
   runRsbuildDevServerTest,
-} from './rsbuild-test-helper';
+} from './rsbuild-test-helper.ts';
 
 test('should render page as expected', async ({ page }) => {
   await runRsbuildDevServerTest(

@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { expect, test } from '@playwright/test';
-import { createRslib } from '@rslib/core';
-import { pluginUnpluginVue } from '../../src';
+import { expect, test } from '@rstest/playwright';
+import { createRslib } from 'rstack/lib';
+import { pluginUnpluginVue } from '../../src/index.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

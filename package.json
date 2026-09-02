@@ -21,29 +21,22 @@
     "dist"
   ],
   "scripts": {
-    "build": "rslib build",
-    "dev": "rslib build --watch",
-    "format": "prettier -w .",
-    "lint": "rslint && prettier -c .",
-    "lint:write": "rslint --fix && prettier -w .",
-    "prepare": "simple-git-hooks && pnpm run build",
-    "test": "playwright test",
-    "bump": "bumpp"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm run lint:write"
+    "build": "rs lib",
+    "bump": "pnpx bumpp",
+    "check": "rs check",
+    "dev": "rs lib -w",
+    "format": "rs fmt",
+    "lint": "rs lint",
+    "prepare": "rs hooks && pnpm run build",
+    "test": "rs test"
   },
   "devDependencies": {
-    "@playwright/test": "^1.62.1",
-    "@rsbuild/core": "2.2.1",
+    "@rsbuild/core": "2.2.2",
     "@rsbuild/core-v1": "npm:@rsbuild/core@^1.7.6",
-    "@rslib/core": "^0.23.2",
-    "@rslint/core": "^0.9.0",
+    "@rstest/playwright": "^0.11.11",
     "@types/node": "^25.9.5",
-    "bumpp": "^11.1.0",
     "playwright": "^1.62.1",
-    "prettier": "^3.9.6",
-    "simple-git-hooks": "^2.14.0",
+    "rstack": "^0.7.2",
     "typescript": "^7.0.2",
     "vue": "^3.5.42"
   },

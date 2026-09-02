@@ -1,9 +1,9 @@
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { expect, type Page } from '@playwright/test';
 import { createRsbuild } from '@rsbuild/core';
 import { createRsbuild as createRsbuildV1 } from '@rsbuild/core-v1';
-import { pluginUnpluginVue } from '../../src';
+import { expect, type Page } from '@rstest/playwright';
+import { pluginUnpluginVue } from '../../src/index.ts';
 
 const portMap = new Map();
 

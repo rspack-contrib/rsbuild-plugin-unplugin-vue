@@ -1,7 +1,8 @@
-import { defineConfig } from '@rslib/core';
-import { pluginUnpluginVue } from 'rsbuild-plugin-unplugin-vue';
+// Configuration guide: https://rstack.rs/config
+import { define } from 'rstack';
+import { pluginUnpluginVue } from '../../src/index.ts';
 
-export default defineConfig({
+define.lib({
   lib: [
     {
       // bundle

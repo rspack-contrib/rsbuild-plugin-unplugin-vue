@@ -3,11 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "rslib build",
-    "dev": "rslib build --watch"
+    "build": "rs lib",
+    "dev": "rs lib -w"
   },
   "devDependencies": {
-    "rsbuild-plugin-unplugin-vue": "workspace:*",
     "vue": "^3.5.42"
   },
   "peerDependencies": {
